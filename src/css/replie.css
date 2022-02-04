@@ -1,0 +1,11 @@
+.replie_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 18px;
+  width: 95%;
+  margin-left: 5%;
+}
