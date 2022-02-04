@@ -73,6 +73,15 @@ body {
   opacity: 0.6;
   margin-left: 15px;
 }
+#you_signage,
+#you_signage_reply {
+  background-color: #5457b6;
+  padding: 2px 7px;
+  color: #fff;
+  font-weight: bold;
+  margin-left: 5px;
+  display: none;
+}
 #user_content {
   color: #67727e;
   font-weight: 400;

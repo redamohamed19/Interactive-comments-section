@@ -11,7 +11,6 @@ var v = [data];
 const App = () => {
   const [rerender, setRerender] = useState(v[0].comments);
 
-  console.log('rerender');
   var x = 0;
 
   useEffect(() => {
@@ -36,12 +35,12 @@ const App = () => {
 
       console.log(rerender);
     };
-  }, []);
+  });
   return (
     <div className="container">
       {x}
       {rerender.map(x => {
-        return <Comment key={x.id} data={x} />;
+        return <Comment key={x.id} data={x} all={v[0]} />;
       })}
       <div className="comment_input">
         <img src={img_avatar} alt="avatar" id="avatar_send" />
