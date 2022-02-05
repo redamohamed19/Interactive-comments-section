@@ -7,15 +7,8 @@ import Replie from './replie';
 import { useEffect, useState } from 'react';
 
 const Comment = props => {
-  useEffect(() => {
-    console.log(props.data.user.username);
-    console.log(props.all.currentUser.username);
-    if (props.data.user.username == props.all.currentUser.username) {
-      document.getElementById('you_signage').style.display = 'block';
-    }
-  }, []);
   return (
-    <div>
+    <div className="Top_comment">
       <div className="com_container">
         <div className="score">
           <img src={plus} />
@@ -26,7 +19,9 @@ const Comment = props => {
           <div className="comment_info">
             <img src={img_avatar} id="avatar" alt="avatar" />
             <h1 id="user_name">{props.data.user.username}</h1>
-            <p id="you_signage">You</p>
+            {props.data.user.username == props.all.currentUser.username && (
+              <p id="you_signage">You</p>
+            )}
             <p id="time_comment">{props.data.createdAt}</p>
             <button className="btn">
               <img src={img_reply} id="reply_img" />

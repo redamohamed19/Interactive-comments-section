@@ -5,51 +5,49 @@ import '../css/style.css';
 import '../css/replie.css';
 import data from '../data/data.json';
 import img_avatar from '../imgs/avatars/image-maxblagun.png';
-import { useEffect, useState } from 'react';
-var v = [data];
+import { useRef, useState } from 'react';
 
 const App = () => {
-  const [rerender, setRerender] = useState(v[0].comments);
+  const [text, settext] = useState('');
 
-  var x = 0;
+  const handleChange = e => {
+    settext(e.target.value);
+  };
+  const [rerender, setRerender] = useState([data][0].comments);
+  let newComment = {
+    id: [data][0].comments[[data][0].comments.length - 1].id++,
+    content: text,
+    createdAt: '1 min ago',
+    score: 0,
+    user: {
+      image: {
+        png: data.currentUser.image.png,
+        webp: data.currentUser.image.webp
+      },
+      username: data.currentUser.username
+    },
+    replies: []
+  };
 
-  useEffect(() => {
-    document.getElementById('btn_send').onclick = function() {
-      v[0].comments.push({
-        id: 1,
-        content:
-          "Impressive! Though it seems the drag feature could be improved. But overall it looks incredible. You've nailed the design and the responsiveness at various breakpoints works really well.",
-        createdAt: '1 month ago',
-        score: 12,
-        user: {
-          image: {
-            png: './images/avatars/image-amyrobson.png',
-            webp: './images/avatars/image-amyrobson.webp'
-          },
-          username: 'amyrobson'
-        },
-        replies: []
-      });
-      setRerender(v[0].comments);
-      x++;
-
-      console.log(rerender);
-    };
-  });
+  const addComment = () => {
+    setRerender(comments => [...comments, newComment]);
+  };
   return (
     <div className="container">
-      {x}
       {rerender.map(x => {
-        return <Comment key={x.id} data={x} all={v[0]} />;
+        return <Comment key={x.id} data={x} all={[data][0]} />;
       })}
       <div className="comment_input">
         <img src={img_avatar} alt="avatar" id="avatar_send" />
         <textarea
           type="text"
           id="comment_entry"
+          onChange={handleChange}
           placeholder="Add a comment..."
         />
-        <button id="btn_send">SEND</button>
+        <button id="btn_send" onClick={addComment}>
+          SEND
+        </button>
       </div>
     </div>
   );
