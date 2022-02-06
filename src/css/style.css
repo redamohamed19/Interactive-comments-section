@@ -34,7 +34,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   background-color: #fff;
   padding: 20px;
   border-radius: 18px;
@@ -118,6 +118,7 @@ body {
   height: 137px;
   padding: 20px;
   border-radius: 18px;
+  margin-bottom: 10px;
 }
 #btn_send {
   background: #5457b6;
@@ -136,6 +137,19 @@ body {
   border-radius: 1rem;
   font-size: 1rem;
   padding: 20px;
+}
+#reply_to_reply {
+  background: #fff;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 137px;
+  padding: 20px;
+  border-radius: 18px;
+  margin-bottom: 10px;
+  width: 95%;
+  margin-left: 5%;
 }
 @media only screen and (max-width: 1200px) {
   .container {

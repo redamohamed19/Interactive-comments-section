@@ -1,13 +1,22 @@
 import React from 'react';
+import img_avatar from '../imgs/avatars/image-amyrobson.png';
+import img_avatar1 from '../imgs/avatars/image-ramsesmiron.png';
+import img_avatar2 from '../imgs/avatars/image-juliusomo.png';
+import img_avatar3 from '../imgs/avatars/image-maxblagun.png';
+import img_reply from '../imgs/icon-reply.svg';
+import plus from '../imgs/icon-plus.svg';
+import minus from '../imgs/icon-minus.svg';
+
 import { render } from 'react-dom';
 import Comment from './comment';
 import '../css/style.css';
 import '../css/replie.css';
 import data from '../data/data.json';
-import img_avatar from '../imgs/avatars/image-maxblagun.png';
+
 import { useRef, useState } from 'react';
 
 const App = () => {
+  console.log('hi');
   const [text, settext] = useState('');
 
   const handleChange = e => {
@@ -38,12 +47,12 @@ const App = () => {
         return <Comment key={x.id} data={x} all={[data][0]} />;
       })}
       <div className="comment_input">
-        <img src={img_avatar} alt="avatar" id="avatar_send" />
+        <img src={data.currentUser.image.png} alt="avatar" id="avatar_send" />
         <textarea
           type="text"
           id="comment_entry"
-          onChange={handleChange}
           placeholder="Add a comment..."
+          onChange={handleChange}
         />
         <button id="btn_send" onClick={addComment}>
           SEND

@@ -14,6 +14,13 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(png|svg|jpg|gif)$/,
+        loader: 'file-loader',
+        options: {
+          name: '/[name].[ext]'
+        }
+      },
+      {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
       },
@@ -26,7 +33,8 @@ module.exports = {
         test: /\.html$/,
         use: [
           {
-            loader: 'html-loader'
+            loader: 'html-loader',
+            options: { minimize: false, sources: false }
           }
         ]
       },
