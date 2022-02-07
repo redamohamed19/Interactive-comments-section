@@ -106,6 +106,17 @@ body {
   font-size: 1rem;
   font-weight: bold;
 }
+.btn_delete {
+  position: absolute;
+  right: 80px;
+  border: none;
+  color: rgba(255, 0, 0, 0.74);
+  background-color: #fff;
+
+  font-size: 1rem;
+  font-weight: bold;
+}
+
 #reply_img {
   margin-right: 10px;
 }

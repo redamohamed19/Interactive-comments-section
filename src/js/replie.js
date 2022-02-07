@@ -2,17 +2,52 @@ import React from 'react';
 
 import { useEffect, useState } from 'react';
 const Replie = props => {
+  const [Bonus, SetBonus] = useState(props.data.score);
+  const [Show, setShow] = useState(false);
+  const [text, settext] = useState('');
+  let newReply = {
+    id: 5,
+    content: text,
+    createdAt: '1 min ago',
+    score: 0,
+    user: {
+      image: {
+        png: props.all.currentUser.image.png,
+        webp: props.all.currentUser.image.webp
+      },
+      username: props.all.currentUser.username
+    }
+  };
+  const handleChange = e => {
+    settext(e.target.value);
+  };
   const addComment = () => {
     Show ? setShow(false) : setShow(true);
   };
-  const [Show, setShow] = useState(false);
+  const reply_to = () => {
+    props.setreply(replies => [...replies, newReply]);
+    setShow(false);
+  };
+
   return (
     <div>
       <div className="replie_container">
         <div className="score">
-          <img src={'./icon-plus.svg'} />
-          <p>{props.data.score}</p>
-          <img src={'./icon-minus.svg'} />
+          <img
+            src={'./icon-plus.svg'}
+            onClick={() => {
+              SetBonus(Bonus + 1);
+              console.log(Bonus);
+            }}
+          />
+          <p>{Bonus}</p>
+          <img
+            src={'./icon-minus.svg'}
+            onClick={() => {
+              SetBonus(Bonus + 1);
+              console.log(Bonus);
+            }}
+          />
         </div>
         <div className="comment">
           <div className="comment_info">
@@ -43,8 +78,11 @@ const Replie = props => {
             type="text"
             id="comment_entry"
             placeholder="Add a comment..."
+            onChange={handleChange}
           />
-          <button id="btn_send">SEND</button>
+          <button id="btn_send" onClick={reply_to}>
+            SEND
+          </button>
         </div>
       )}
     </div>

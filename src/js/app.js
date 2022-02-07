@@ -6,6 +6,8 @@ import img_avatar3 from '../imgs/avatars/image-maxblagun.png';
 import img_reply from '../imgs/icon-reply.svg';
 import plus from '../imgs/icon-plus.svg';
 import minus from '../imgs/icon-minus.svg';
+import deletee from '../imgs/icon-delete.svg';
+import edit from '../imgs/icon-edit.svg';
 
 import { render } from 'react-dom';
 import Comment from './comment';

@@ -30,6 +30,7 @@ const Comment = props => {
   };
   const reply_to = () => {
     Setreply_msg(replies => [...replies, newReply]);
+    setShow(false);
   };
 
   return (
@@ -54,10 +55,24 @@ const Comment = props => {
               <p id="you_signage">You</p>
             )}
             <p id="time_comment">{props.data.createdAt}</p>
-            <button className="btn" onClick={addComment}>
-              <img src={'./icon-reply.svg'} id="reply_img" />
-              Reply
-            </button>
+            {!(props.data.user.username == props.all.currentUser.username) && (
+              <button className="btn" onClick={addComment}>
+                <img src={'./icon-reply.svg'} id="reply_img" />
+                Reply
+              </button>
+            )}
+            {props.data.user.username == props.all.currentUser.username && (
+              <button className="btn">
+                <img src={'./icon-edit.svg'} id="reply_img" />
+                Edit
+              </button>
+            )}
+            {props.data.user.username == props.all.currentUser.username && (
+              <button className="btn_delete" onClick={addComment}>
+                <img src={'./icon-delete.svg'} id="reply_img" />
+                Delete
+              </button>
+            )}
           </div>
           <div className="paragraphe">
             <p id="user_content">{props.data.content}</p>
@@ -83,7 +98,15 @@ const Comment = props => {
         </div>
       )}
       {reply_msg.map(replie => {
-        return <Replie key={replie.id} data={replie} all={props.all} />;
+        return (
+          <Replie
+            key={replie.id}
+            setreply={Setreply_msg}
+            replie={reply_msg}
+            data={replie}
+            all={props.all}
+          />
+        );
       })}
     </div>
   );
