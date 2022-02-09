@@ -5,6 +5,7 @@ const Replie = props => {
   const [Bonus, SetBonus] = useState(props.data.score);
   const [Show, setShow] = useState(false);
   const [text, settext] = useState('');
+  const [updateInput, SetUpdateInput] = useState(false);
   let newReply = {
     id: 5,
     content: text,
@@ -27,6 +28,10 @@ const Replie = props => {
   const reply_to = () => {
     props.setreply(replies => [...replies, newReply]);
     setShow(false);
+  };
+  const Edit_comment = () => {
+    props.data.content = text;
+    SetUpdateInput(false);
   };
 
   return (
@@ -57,14 +62,49 @@ const Replie = props => {
               <p id="you_signage_reply">You</p>
             )}
             <p id="time_comment">{props.data.createdAt}</p>
-            <button className="btn" onClick={addComment}>
-              <img src={'./icon-reply.svg'} id="reply_img" />
-              Reply
-            </button>
+            {!(props.data.user.username == props.all.currentUser.username) && (
+              <button className="btn" onClick={addComment}>
+                <img src={'./icon-reply.svg'} id="reply_img" />
+                Reply
+              </button>
+            )}
+            {props.data.user.username == props.all.currentUser.username && (
+              <button
+                className="btn"
+                onClick={() => {
+                  updateInput ? SetUpdateInput(false) : SetUpdateInput(true);
+                }}
+              >
+                <img src={'./icon-edit.svg'} id="reply_img" />
+                Edit
+              </button>
+            )}
+            {props.data.user.username == props.all.currentUser.username && (
+              <button className="btn_delete" onClick={addComment}>
+                <img src={'./icon-delete.svg'} id="reply_img" />
+                Delete
+              </button>
+            )}
           </div>
-          <div className="paragraphe">
-            <p id="user_content">{props.data.content}</p>
-          </div>
+          {!updateInput && (
+            <div className="paragraphe">
+              <p id="user_content">{props.data.content}</p>
+            </div>
+          )}
+          {updateInput && (
+            <div className="updateInput">
+              {' '}
+              <textarea
+                type="text"
+                id="update_entry"
+                placeholder="Add a comment..."
+                onChange={handleChange}
+              />
+              <button id="btn_update" onClick={Edit_comment}>
+                UPDATE
+              </button>
+            </div>
+          )}
         </div>
       </div>
       {Show && (

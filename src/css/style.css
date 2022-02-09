@@ -106,6 +106,31 @@ body {
   font-size: 1rem;
   font-weight: bold;
 }
+.updateInput {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#btn_update {
+  background: #5457b6;
+  color: #fff;
+  border-radius: 9px;
+  padding: 07px 15px 7px 15px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-left: 20px;
+}
+#update_entry {
+  height: 100%;
+  width: 80%;
+  margin-top: 10px;
+  border: 1px solid #e1e5ea;
+  border-radius: 1rem;
+  font-size: 1rem;
+  padding: 20px;
+}
 .btn_delete {
   position: absolute;
   right: 80px;
