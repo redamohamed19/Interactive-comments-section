@@ -238,3 +238,48 @@ body {
     width: 95%;
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .container {
+    padding: 5px;
+  }
+  .com_container {
+    flex-direction: column-reverse;
+    padding: 05px;
+  }
+  .replie_container {
+    flex-direction: column-reverse;
+  }
+  .score {
+    flex-direction: row;
+    width: 50%;
+    height: 25px;
+    margin-top: 20px;
+  }
+  .comment {
+    display: flex;
+  }
+  .comment_info {
+    flex-direction: column;
+    justify-content: unset;
+    align-items: flex-start;
+  }
+  #avatar,
+  #user_name,
+  #you_signage_reply,
+  #time_comment {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+  .btn {
+    position: relative;
+    margin: 0;
+  }
+  .btn_delete {
+    position: relative;
+    right: 0;
+  }
+  .paragraphe {
+    margin-left: 10px;
+  }
+}
