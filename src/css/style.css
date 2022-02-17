@@ -267,9 +267,10 @@ body {
   #avatar,
   #user_name,
   #you_signage_reply,
-  #time_comment {
+  #time_comment,
+  .btn {
     margin-left: 0;
-    margin-top: 10px;
+    margin-top: 20px;
   }
   .btn {
     position: relative;
@@ -280,6 +281,13 @@ body {
     right: 0;
   }
   .paragraphe {
+    margin-left: 10px;
+  }
+  #comment_entry {
+    padding: 10px;
+    margin-left: 10px;
+  }
+  #btn_send {
     margin-left: 10px;
   }
 }
