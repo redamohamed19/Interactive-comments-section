@@ -18,7 +18,6 @@ import data from '../data/data.json';
 import { useRef, useState } from 'react';
 
 const App = () => {
-  console.log('hi');
   const [text, settext] = useState('');
 
   const handleChange = e => {
@@ -26,7 +25,7 @@ const App = () => {
   };
   const [rerender, setRerender] = useState([data][0].comments);
   let newComment = {
-    id: [data][0].comments[[data][0].comments.length - 1].id++,
+    id: text.length * 4,
     content: text,
     createdAt: '1 min ago',
     score: 0,
@@ -43,10 +42,20 @@ const App = () => {
   const addComment = () => {
     setRerender(comments => [...comments, newComment]);
   };
+
   return (
     <div className="container">
       {rerender.map(x => {
-        return <Comment key={x.id} data={x} all={[data][0]} />;
+        return (
+          <Comment
+            key={x.id}
+            id={x.id}
+            data={x}
+            all={[data][0]}
+            rerender={rerender}
+            setRerender={setRerender}
+          />
+        );
       })}
       <div className="comment_input">
         <img src={data.currentUser.image.png} alt="avatar" id="avatar_send" />

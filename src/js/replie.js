@@ -6,6 +6,7 @@ const Replie = props => {
   const [Show, setShow] = useState(false);
   const [text, settext] = useState('');
   const [updateInput, SetUpdateInput] = useState(false);
+  const [showmodal, Setshowmodal] = useState(false);
   let newReply = {
     id: 5,
     content: text,
@@ -18,6 +19,16 @@ const Replie = props => {
       },
       username: props.all.currentUser.username
     }
+  };
+  console.log(props.replie);
+  const remove = () => {
+    const num = props.id;
+    let arr = props.replie;
+    arr = arr.filter(el => el.id !== num);
+    console.log(props.replie);
+    props.setreply(old => arr);
+
+    Setshowmodal(false);
   };
   const handleChange = e => {
     settext(e.target.value);
@@ -36,6 +47,28 @@ const Replie = props => {
 
   return (
     <div>
+      {showmodal && (
+        <div className="modal_wraper">
+          <h1>Delete comment</h1>
+          <p>
+            Are you sure you want to delete this comment? This will remove the
+            comment and can't be undone.
+          </p>
+          <div className="modal_btn">
+            <button id="delete" onClick={remove}>
+              Yes,DELETE
+            </button>
+            <button
+              id="cancel"
+              onClick={() => {
+                Setshowmodal(false);
+              }}
+            >
+              NO,CANCEL
+            </button>
+          </div>
+        </div>
+      )}
       <div className="replie_container">
         <div className="score">
           <img
@@ -80,7 +113,12 @@ const Replie = props => {
               </button>
             )}
             {props.data.user.username == props.all.currentUser.username && (
-              <button className="btn_delete" onClick={addComment}>
+              <button
+                className="btn_delete"
+                onClick={() => {
+                  Setshowmodal(true);
+                }}
+              >
                 <img src={'./icon-delete.svg'} id="reply_img" />
                 Delete
               </button>

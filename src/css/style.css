@@ -187,6 +187,52 @@ body {
   width: 95%;
   margin-left: 5%;
 }
+
+.modal_wraper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height: 200px;
+  transform: translate(-50%, -50%);
+  background: #978b8bcf;
+  padding: 10px;
+  color: whitesmoke;
+  z-index: 999;
+  border-radius: 18px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.modal_wraper p {
+  text-align: center;
+}
+.modal_btn {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+#delete {
+  background: #ed6468;
+  color: #fff;
+  border-radius: 9px;
+  padding: 07px 15px 7px 15px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+#cancel {
+  background: rgb(100 100 100);
+  color: #fff;
+  border-radius: 9px;
+  padding: 07px 15px 7px 15px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 1rem;
+  cursor: pointer;
+}
 @media only screen and (max-width: 1200px) {
   .container {
     width: 95%;

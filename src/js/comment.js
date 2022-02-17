@@ -9,8 +9,10 @@ const Comment = props => {
   const [reply_msg, Setreply_msg] = useState(props.data.replies);
   const [text, settext] = useState('');
   const [updateInput, SetUpdateInput] = useState(false);
+  const [showmodal, Setshowmodal] = useState(false);
+
   let newReply = {
-    id: 5,
+    id: text.length * 7,
     content: text,
     createdAt: '1 min ago',
     score: 0,
@@ -21,6 +23,16 @@ const Comment = props => {
       },
       username: props.all.currentUser.username
     }
+  };
+
+  const remove = () => {
+    const num = props.id;
+    let arr = props.rerender;
+    arr = arr.filter(el => el.id !== num);
+    console.log(props.rerender);
+    props.setRerender(old => arr);
+
+    Setshowmodal(false);
   };
   const handleChange = e => {
     settext(e.target.value);
@@ -40,6 +52,29 @@ const Comment = props => {
 
   return (
     <div className="Top_comment">
+      {showmodal && (
+        <div className="modal_wraper">
+          <h1>Delete comment</h1>
+          <p>
+            Are you sure you want to delete this comment? This will remove the
+            comment and can't be undone.
+          </p>
+          <div className="modal_btn">
+            <button id="delete" onClick={remove}>
+              Yes,DELETE
+            </button>
+            <button
+              id="cancel"
+              onClick={() => {
+                Setshowmodal(false);
+              }}
+            >
+              NO,CANCEL
+            </button>
+          </div>
+        </div>
+      )}
+
       <div className="com_container">
         <div className="score">
           <img
@@ -78,7 +113,12 @@ const Comment = props => {
               </button>
             )}
             {props.data.user.username == props.all.currentUser.username && (
-              <button className="btn_delete" onClick={addComment}>
+              <button
+                className="btn_delete"
+                onClick={() => {
+                  Setshowmodal(true);
+                }}
+              >
                 <img src={'./icon-delete.svg'} id="reply_img" />
                 Delete
               </button>
@@ -127,6 +167,7 @@ const Comment = props => {
         return (
           <Replie
             key={replie.id}
+            id={replie.id}
             setreply={Setreply_msg}
             replie={reply_msg}
             data={replie}
